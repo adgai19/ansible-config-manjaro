@@ -1,0 +1,19 @@
+---
+# - name: full system upgrade
+#   pacman:
+#     update_cache: yes
+#     upgrade: yes
+- name: install mcfly
+  package:
+    name:
+      - mcfly
+      - bat
+      - exa
+      - starship
+      - zoxide
+    state: latest
+
+- name: install yay
+  package:
+    name: yay
+    state: latest

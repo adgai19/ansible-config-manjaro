@@ -1,0 +1,20 @@
+---
+- hosts: all
+  # - hosts: localhost
+  # connection: local
+  vars_files:
+    - ./vars/localhost.yml
+
+  roles:
+    - { role: pacman, become: true }
+    - { role: nvim-build, become: true }
+    - nvim-config
+    # - { role: fubarhouse.golang, become: true }
+    # - { role: fubarhouse.rust, become: true }
+    # - apt
+    - rust
+    - tmux
+    - zsh
+    - golang
+    # - cargo
+    # - aur

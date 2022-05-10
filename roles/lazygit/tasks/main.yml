@@ -1,0 +1,7 @@
+---
+- name: Install lazygit
+  become: true
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - lazygit

@@ -1,0 +1,36 @@
+---
+- name: check if config exists
+  stat:
+    path: "{{ansible_user_dir}}/.config/nvim/init.lua"
+  register: config
+
+- name: Clone Config
+  ansible.builtin.git:
+    clone: yes
+    dest: "{{ansible_user_dir}}/.config/nvim"
+    repo: "https://github.com/adgai19/nvim-config.git"
+    update: yes
+    accept_hostkey: true
+    # accept_newhostkey: true
+    single_branch: yes
+  when: not config.stat.exists
+
+- name: clone packer
+  git:
+    clone: yes
+    dest: "{{ansible_user_dir}}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    repo: "https://github.com/wbthomason/packer.nvim"
+    single_branch: yes
+    depth: 1
+  when: not config.stat.exists
+
+- name: move  after folder so that it does not create issues
+  command: mv {{ansible_user_dir}}/.config/nvim/after {{ansible_user_dir}}/.config/nvim/temp
+  when: not config.stat.exists
+
+# - name: sync packages
+#   shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+
+- name: move  after folder so that it does not create issues
+  command: mv {{ansible_user_dir}}/.config/nvim/temp {{ansible_user_dir}}/.config/nvim/after
+  when: not config.stat.exists

@@ -22,7 +22,7 @@
   become: true
 
 - name: Copy daemon.json
-  ansible.builtin.template:
+  copy:
     dest: "/etc/docker/daemon.json"
     src: "daemon.json"
   become: true

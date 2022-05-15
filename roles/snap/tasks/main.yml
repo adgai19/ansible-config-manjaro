@@ -1,0 +1,10 @@
+---
+- name: install stuff
+  tags: snap
+  become: true
+  community.general.snap:
+    name:
+      - bitwarden
+      - discord
+      # - gitkraken
+    classic: yes

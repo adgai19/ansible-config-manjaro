@@ -9,12 +9,13 @@
     - { role: pacman, become: true }
     - { role: nvim-build, become: true }
     - nvim-config
-    # - { role: fubarhouse.golang, become: true }
-    # - { role: fubarhouse.rust, become: true }
-    # - apt
     - rust
+    - volta
     - tmux
     - zsh
     - golang
-    # - cargo
-    # - aur
+    - cargo
+    - docker
+    - aur
+    - python
+    - snap

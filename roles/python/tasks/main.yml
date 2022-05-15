@@ -1,0 +1,12 @@
+---
+- name: install pip
+  tags: python
+  become: true
+  package:
+    name: python-pip
+    state: latest
+
+- name: Install test package
+  tags: python
+  pip:
+    name: bumblebee-status

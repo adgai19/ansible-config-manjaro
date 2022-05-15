@@ -1,19 +1,33 @@
 ---
-# - name: full system upgrade
-#   pacman:
-#     update_cache: yes
-#     upgrade: yes
+- name: full system upgrade
+  tags: packages
+  pacman:
+    update_cache: yes
+    upgrade: yes
 - name: install mcfly
+  tags: packages
   package:
     name:
       - mcfly
-      - bat
-      - exa
-      - starship
-      - zoxide
+      # - bat
+      # - exa
+      # - starship
+      # - zoxide
     state: latest
 
 - name: install yay
+  tags: packages
   package:
     name: yay
     state: latest
+
+- name: install mirror tools
+  tags: packages
+  package:
+    name: reflector
+    state: present
+
+- name: update mirrors
+  tags: packages
+  become: true
+  shell: reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist

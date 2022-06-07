@@ -9,10 +9,6 @@
   package:
     name:
       - mcfly
-      # - bat
-      # - exa
-      # - starship
-      # - zoxide
     state: latest
 
 - name: install yay
@@ -21,13 +17,23 @@
     name: yay
     state: latest
 
-- name: install mirror tools
+# - name: install mirror tools
+#   tags: packages
+#   package:
+#     name:
+#       - reflector
+#       - rsync
+#       - curl
+#
+#   state: present
+
+# - name: update mirrors
+#   tags: packages
+#   become: true
+#   shell: reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+
+- name: install pass
   tags: packages
   package:
-    name: reflector
-    state: present
-
-- name: update mirrors
-  tags: packages
-  become: true
-  shell: reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+    name: pass
+    state: latest

@@ -1,6 +1,6 @@
 ---
 - name: check if volta is installed
-  shell: command -v volta
+  stat: "{{ansible_user_dir}}/.volta/bin/volta"
   register: volta_exists
   ignore_errors: true
   tags: volta
@@ -18,8 +18,7 @@
   when: volta_exists is failed
   shell: /tmp/volta.sh
   tags: volta
-
 - name: install node
-  shell: volta install node
+  shell: "{{ansible_user_dir}}/.volta/bin/volta install node"
   become_user: adgai
   tags: volta

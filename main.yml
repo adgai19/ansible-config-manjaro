@@ -15,7 +15,7 @@
     - zsh
     - golang
     - cargo
-    - docker
+    # - docker
     - aur
     - python
     - snap
